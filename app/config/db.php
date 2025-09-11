@@ -1,8 +1,8 @@
 <?php
   $host = "localhost";
   $user = "root";
-  $pass = "";
-  $dbname = "admin-dashboard";
+  $pass = "root";
+  $dbname = "school";
 
   $con = new mysqli($host, $user, $pass, $dbname);
 
