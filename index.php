@@ -6,6 +6,7 @@
   <title>Student Admin Dashboard</title>
   <link rel="stylesheet" href="./styles/index.css" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
+  <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
 
 <body>
@@ -24,69 +25,77 @@
       <p>Manage students information efficiently</p>
     </div>
 
+  <?php if (mysqli_num_rows($students) > 0): ?>
+  <div id="search-records">
+    <div id="search">
+      <img src="public/icons/search.svg" alt="search"/>
+      <input placeholder="Search by name or department" />
+    </div>
+  </div>
 
-    <?php if(!(mysqli_num_rows($students) > 0)): ?>
-      <div id="search-records">
-        <div id="search">
-          <img src="public/icons/search.svg" alt="search"/>
-          <input placeholder="Search by name or department" />
+  <div id="table-wrapper">
+    <div id="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Student ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <?php while ($row = mysqli_fetch_assoc($students)): ?>
+            <tr>
+              <td><?php echo htmlspecialchars($row['name']); ?></td>
+              <td><?php echo htmlspecialchars($row['age']); ?></td>
+              <td><?php echo htmlspecialchars($row['department']); ?></td>
+              <td><?php echo htmlspecialchars(string: $row['studentID']); ?></td>
+              <td>
+                <a href="edit.php?studentID=<?php echo urlencode($row['studentID']); ?>">edit</a> |
+                <a href="delete.php?studentID=<?php echo urlencode($row['studentID']); ?>">delete</a>
+              </td>
+            </tr>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="records-mobile">
+    <?php mysqli_data_seek($students, 0);?>
+    <?php while ($row = mysqli_fetch_assoc($students)): ?>
+      <div class="record-row">
+        <div class="record-row-info">
+          <h3><?php echo htmlspecialchars($row['name']); ?></h3>
+          <p>Age: <span><?php echo htmlspecialchars($row['age']); ?></span></p>
+          <p>Department: <span><?php echo htmlspecialchars($row['department']); ?></span></p>
+        </div>
+
+        <div class="action-icons-wrapper">
+          <a href="edit.php?studentID=<?php echo urlencode($row['studentID']); ?>">
+            <img src="public/icons/edit.svg" alt="edit"/>
+          </a>
+          <a href="delete.php?studentID=<?php echo urlencode($row['studentID']); ?>">
+            <img src="public/icons/trash.svg" alt="delete"/>
+          </a>
         </div>
       </div>
+    <?php endwhile; ?>
+  </div>
 
-      <div id="table-wrapper">
-        <div id="table">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Department</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <!-- map over data -->
-              <tr>
-                <td>Name</td>
-                <td>Age</td>
-                <td>Department</td>
-                <td>
-                  <a href="edit.php">edit</a> |
-                  <a href="delete.php">delete</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="records-mobile">
-        <!-- map over data -->
-        <div class="record-row">
-          <div class="record-row-info">
-            <h3>Name</h3>
-            <p>Age: <span>20</span></p>
-            <p>Department: <span>Computer science</span></p>
-          </div>
-
-          <div class="action-icons-wrapper">
-            <img src="public/icons/edit.svg" />
-            <img src="public/icons/trash.svg" />
-          </div>
-        </div>
-      </div>
-
-      <div id="add-student">
-        <button>
-          <img src="/admin-dashboard/public/icons/plus.svg" alt="add"/>
-        </button>
-      </div>
-    <?php else: ?>
-      <div>
-        No student records found
-      </div>
-    <?php endif; ?>
+  <div id="add-student">
+    <a href="add.php" class="primary-btn btn">
+      <img src="/admin-dashboard/public/icons/plus.svg" alt="add"/>
+    </a>
+  </div>
+<?php else: ?>
+  <div>
+    No student records found
+  </div>
+<?php endif; ?>
   </div>
 
   </div>

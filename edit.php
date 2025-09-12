@@ -6,6 +6,7 @@
   <title>Student Admin Dashboard | Edit</title>
   <link rel="stylesheet" href="./styles/edit.css" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
+  <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
 <body>
   <?php include_once "./components/header.php" ?>

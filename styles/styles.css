@@ -1,42 +1,40 @@
-:root {
-  &.light-mode {
-    --background: #ffffff;
-    --foreground: #0d1c17;
+:root.light {
+  --background: #ffffff;
+  --foreground: #0d1c17;
 
-    --card: #f7fcfa;
-    --card-foreground: #0d1c17;
+  --card: #f7fcfa;
+  --card-foreground: #0d1c17;
 
-    --muted: #cce8de;
-    --muted-foreground: #45a180;
+  --muted: #cce8de;
+  --muted-foreground: #45a180;
 
-    --primary: #009963;
-    --primary-foreground: #ffffff;
+  --primary: #009963;
+  --primary-foreground: #ffffff;
 
-    --border: #e5e8eb;
-    --input: #e5f5f0;
+  --border: #e5e8eb;
+  --input: #e5f5f0;
 
-    --ring: #009963;
-  }
+  --ring: #009963;
+}
 
-  &,
-  &.dark-mode {
-    --background: #0f241c;
-    --foreground: #ffffff;
+:root,
+:root.dark {
+  --background: #0f241c;
+  --foreground: #ffffff;
 
-    --card: #17362b;
-    --card-foreground: #ffffff;
+  --card: #17362b;
+  --card-foreground: #ffffff;
 
-    --muted: #214a3d;
-    --muted-foreground: #8fccb8;
+  --muted: #214a3d;
+  --muted-foreground: #8fccb8;
 
-    --primary: #009963;
-    --primary-foreground: #ffffff;
+  --primary: #009963;
+  --primary-foreground: #ffffff;
 
-    --border: #2e6b54;
-    --input: #17362b;
+  --border: #2e6b54;
+  --input: #17362b;
 
-    --ring: #009963;
-  }
+  --ring: #009963;
 }
 
 @font-face {
@@ -57,8 +55,7 @@
   box-sizing: border-box;
 }
 
-/* default css config */
-
+/* default styles */
 html {
   font-size: 62.5%;
 }
@@ -71,8 +68,11 @@ body {
   color: var(--foreground);
   margin: 0 auto 0 auto;
   max-width: 1440px;
-  min-width: 280px;
-  overflow: hidden;
+  min-width: 290px;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 input:focus,
@@ -97,21 +97,38 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button {
+button,
+.btn {
   background: none;
   outline: none;
   border: none;
   line-height: 2.1rem;
   padding: 1rem 1.6rem;
   border-radius: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.4rem;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.primary-btn {
   background-color: var(--primary);
   color: var(--primary-foreground);
-  font-weight: bold;
-  font-size: 1.4rem;
 
   &:hover {
     background-color: var(--muted-foreground);
     color: var(--primary);
+  }
+}
+
+.secondary-btn {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+
+  &:hover {
+    background-color: #2a5e4e;
+    color: #73bca1;
   }
 }
 
@@ -129,9 +146,14 @@ button {
   justify-content: start;
   align-items: center;
   gap: 1.6rem;
+  text-decoration: none;
+  color: var(--foreground);
 
-  & > img {
-    display: none;
+  .logo > img {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   & > h3 {
@@ -146,7 +168,7 @@ button {
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 
   & > button {
     display: none;
@@ -164,13 +186,6 @@ button {
   .header {
     padding: 1.2rem 4rem;
     border-bottom: 0.1rem solid var(--foreground);
-  }
-
-  .logo > img {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 1.6rem;
-    height: 1.6rem;
   }
 
   #nav {

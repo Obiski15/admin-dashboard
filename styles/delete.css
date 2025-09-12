@@ -1,1 +1,38 @@
 @import url("./styles.css");
+
+.delete-container {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main h2 {
+  padding: 1.2rem 1.6rem 2rem 1.6rem;
+  line-height: 2.8rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+main p {
+  padding: 1.2rem 1.6rem 0.4rem 1.6rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+#action-buttons {
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.confirm-btn {
+  flex: 1;
+}
+
+.cancel-btn {
+  flex: 1;
+  cursor: pointer;
+}
