@@ -20,20 +20,16 @@ function toggleAddStudentVisibility() {
 function toggleThemeAndIcon() {
   const toggleLight = document.querySelector(".theme-toggle-light");
   const toggleDark = document.querySelector(".theme-toggle-dark");
-  const iconLight = document.querySelector(".page-icon-light");
-  const iconDark = document.querySelector(".page-icon-dark");
+  const lightIcons = document.querySelectorAll(".icon-light");
+  const darkIcons = document.querySelectorAll(".icon-dark");
 
   function toggleIconVisibility() {
     if (document.documentElement.classList.contains("light")) {
-      toggleDark.style.display = "none";
-      toggleLight.style.display = "inline-block";
-      iconDark.style.display = "none";
-      iconLight.style.display = "inline-block";
+      lightIcons.forEach((e) => (e.style.display = "inline-block"));
+      darkIcons.forEach((e) => (e.style.display = "none"));
     } else {
-      iconLight.style.display = "none";
-      iconDark.style.display = "inline-block";
-      toggleDark.style.display = "inline-block";
-      toggleLight.style.display = "none";
+      lightIcons.forEach((e) => (e.style.display = "none"));
+      darkIcons.forEach((e) => (e.style.display = "inline-block"));
     }
   }
   toggleIconVisibility();

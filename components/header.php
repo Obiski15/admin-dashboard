@@ -3,8 +3,7 @@
 
   <div id="nav">
     <a href="add.php" id="add-student-btn" class="btn primary-btn">Add student</a>
-    <img class="theme-toggle theme-toggle-dark" src="/admin-dashboard/public/icons/dark.svg" />
-    <img class="theme-toggle theme-toggle-light" src="/admin-dashboard/public/icons/light.svg" />
-    <!-- replace with theme toggle icon --> 
+    <img class="theme-toggle theme-toggle-dark icon-dark" src="/admin-dashboard/public/icons/dark.svg" />
+    <img class="theme-toggle theme-toggle-light icon-light" src="/admin-dashboard/public/icons/light.svg" />
   </div>
 </header>

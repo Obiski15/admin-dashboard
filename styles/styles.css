@@ -90,6 +90,8 @@ input {
   outline: none;
   border: none;
   color: var(--muted-foreground);
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 input:disabled,
@@ -170,7 +172,7 @@ button,
   align-items: center;
   gap: 1rem;
 
-  & > button {
+  & > a {
     display: none;
   }
 }
@@ -191,7 +193,7 @@ button,
   #nav {
     gap: 3.2rem;
 
-    & > button {
+    & > a {
       display: block;
     }
   }
