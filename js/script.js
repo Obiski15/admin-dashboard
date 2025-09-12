@@ -1,5 +1,13 @@
 const addStudentButton = document.querySelector("#add-student-btn");
-const toggle = document.querySelector(".theme-toggle");
+
+// set theme from local storage
+(() => {
+  const theme = localStorage.getItem("theme");
+
+  if (theme) {
+    document.documentElement.classList.add(theme);
+  }
+})();
 
 function toggleAddStudentVisibility() {
   const paths = ["/admin-dashboard/index.php", "/admin-dashboard/"];
@@ -30,21 +38,21 @@ function toggleThemeAndIcon() {
   }
   toggleIconVisibility();
 
-  [toggleLight, toggleDark].forEach((toggle) =>
-    toggle.addEventListener("click", () => {
+  [
+    { component: toggleLight, theme: "" },
+    { component: toggleDark, theme: "light" },
+  ].forEach((toggle) =>
+    toggle.component.addEventListener("click", () => {
       document.documentElement.classList.toggle("light");
+      localStorage.setItem("theme", toggle.theme);
       toggleIconVisibility();
     })
   );
 }
 
 function main() {
-  if (addStudentButton) {
-    toggleAddStudentVisibility();
-  }
-  if (toggle) {
-    toggleThemeAndIcon();
-  }
+  toggleAddStudentVisibility();
+  toggleThemeAndIcon();
 }
 
 main();
