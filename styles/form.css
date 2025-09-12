@@ -1,0 +1,56 @@
+@import url("./styles.css");
+
+main {
+  padding: 2rem 1.6rem;
+}
+
+#form-header {
+  padding: 1.6rem;
+
+  & > h2 {
+    line-height: 2.3rem;
+    font-size: 1.8rem;
+  }
+}
+
+.field-group {
+  padding: 1.6rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.6rem;
+
+  & label {
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+
+  & input {
+    border-radius: 0.8rem;
+  }
+
+  & input,
+  & select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background-color: var(--input);
+    color: var(--muted-foreground);
+    padding: 1.5rem;
+  }
+}
+
+#action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+}
+
+@media only screen and (min-width: 640px) {
+  #form-header > h2 {
+    line-height: 4rem;
+    font-size: 3.2rem;
+  }
+}
