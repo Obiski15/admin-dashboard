@@ -4,13 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Admin Dashboard</title>
-  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/index.css?v=2" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
   <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
-
+<style>
+body { overflow-y: scroll !important; }
+html, body { height: auto !important; }
+</style>
 <body>
   <?php include_once "./components/header.php" ?>
+        <?php
+      session_start();
+      if (isset($_SESSION['SUCCESS'])) {
+        echo '<div class="flash-success">'.htmlspecialchars($_SESSION['SUCCESS']).'</div>';
+        unset($_SESSION['SUCCESS']);
+      }
+      if (isset($_SESSION['error'])) {
+        echo '<div class="flash-error">'.htmlspecialchars($_SESSION['error']).'</div>';
+        unset($_SESSION['error']);
+      }
+      ?>
 
   <?php
   require_once "./app/controller/students/students.php";
@@ -25,13 +39,14 @@
       <p>Manage students information efficiently</p>
     </div>
 
-  <?php if (mysqli_num_rows($students) > 0): ?>
-  <div id="search-records">
-    <div id="search">
-      <img src="public/icons/search.svg" alt="search"/>
-      <input placeholder="Search by name or department" />
-    </div>
-  </div>
+
+  <?php if(mysqli_num_rows($students) > 0): ?>
+      <div id="search-records">
+        <div id="search">
+          <img src="public/icons/search.svg" alt="search"/>
+          <input placeholder="Search by name or department" />
+        </div>
+      </div>
 
   <div id="table-wrapper">
     <div id="table">
@@ -52,7 +67,7 @@
               <td><?php echo htmlspecialchars($row['name']); ?></td>
               <td><?php echo htmlspecialchars($row['age']); ?></td>
               <td><?php echo htmlspecialchars($row['department']); ?></td>
-              <td><?php echo htmlspecialchars(string: $row['studentID']); ?></td>
+              <td><?php echo htmlspecialchars($row['studentID']); ?></td>
               <td>
                 <a href="edit.php?studentID=<?php echo urlencode($row['studentID']); ?>">edit</a> |
                 <a href="delete.php?studentID=<?php echo urlencode($row['studentID']); ?>">delete</a>
@@ -86,16 +101,16 @@
     <?php endwhile; ?>
   </div>
 
-  <div id="add-student">
-    <a href="add.php" class="primary-btn btn">
-      <img src="/admin-dashboard/public/icons/plus.svg" alt="add"/>
-    </a>
-  </div>
-<?php else: ?>
-  <div>
-    No student records found
-  </div>
-<?php endif; ?>
+      <div id="add-student">
+        <a href="add.php">
+          <img src="/admin-dashboard/public/icons/plus.svg" alt="add"/>
+        </a>
+      </div>
+    <?php else: ?>
+      <div>
+        No student records found
+      </div>
+    <?php endif; ?>
   </div>
 
   </div>
