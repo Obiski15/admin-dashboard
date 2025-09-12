@@ -1,51 +1,38 @@
 @import url("./styles.css");
 
 .delete-container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--card);
-    color: var(--card-foreground);
-  }
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .delete-container h2 {
-    margin-bottom: 15px;
-  }
-  
-  .delete-container p {
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-  
-  .delete-container ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 25px;
-  }
-  
-  .delete-container ul li {
-    margin-bottom: 10px;
-  }
-  
-  .delete-container .confirm-btn,
-  .delete-container .cancel-btn {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  .delete-container .confirm-btn {
-    background: #d9534f;
-    color: #fff;
-  }
-  
-  .delete-container .cancel-btn {
-    background: #f0f0f0;
-    color: #333;
-  }
+main h2 {
+  padding: 1.2rem 1.6rem 2rem 1.6rem;
+  line-height: 2.8rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+main p {
+  padding: 1.2rem 1.6rem 0.4rem 1.6rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+#action-buttons {
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.confirm-btn {
+  flex: 1;
+}
+
+.cancel-btn {
+  flex: 1;
+  cursor: pointer;
+}

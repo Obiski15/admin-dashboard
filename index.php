@@ -6,6 +6,7 @@
   <title>Student Admin Dashboard</title>
   <link rel="stylesheet" href="./styles/index.css" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
+  <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
       <p>Manage students information efficiently</p>
     </div>
 
-    <?php if (mysqli_num_rows($students) > 0): ?>
+  <?php if (mysqli_num_rows($students) > 0): ?>
   <div id="search-records">
     <div id="search">
       <img src="public/icons/search.svg" alt="search"/>
@@ -86,9 +87,9 @@
   </div>
 
   <div id="add-student">
-    <button>
+    <a href="add.php" class="primary-btn btn">
       <img src="/admin-dashboard/public/icons/plus.svg" alt="add"/>
-    </button>
+    </a>
   </div>
 <?php else: ?>
   <div>

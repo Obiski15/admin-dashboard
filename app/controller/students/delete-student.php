@@ -2,8 +2,9 @@
 
 require_once "../../config/db.php"; 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['studentID'])) {
-    $studentID = $_POST['studentID']; 
+$studentID = $_POST['studentID']; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($studentID)) {
 
     $stmt = $con->prepare("DELETE FROM students WHERE studentID = ?");
     $stmt->bind_param("s", $studentID);

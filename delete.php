@@ -13,6 +13,12 @@ $stmt->bind_param("s", $studentID);
 $stmt->execute();
 $result = $stmt->get_result();
 $student = $result->fetch_assoc();
+
+if(!$student) {
+  echo "Student not found";
+  exit();
+}
+
 $stmt->close();
 
 ?>
@@ -25,25 +31,24 @@ $stmt->close();
   <title>Delete Student</title>
   <link rel="stylesheet" href="./styles/delete.css" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
+  <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
 <body>
   <?php include_once "./components/header.php" ?>
 
   <div class="delete-container">
-    <h2>Confirm Deletion</h2>
-    <p>Are you sure you want to delete the following student?</p>
+    <main>
+      <h2>Confirm Deletion</h2>
+      <p>Are you sure you want to delete the record for <strong><?= htmlspecialchars($student['name']) ?></strong>?</p>
 
-    <ul>
-      <li><strong>Name:</strong> <?= htmlspecialchars($student['name']) ?></li>
-      <li><strong>Age:</strong> <?= htmlspecialchars($student['age']) ?></li>
-      <li><strong>Department:</strong> <?= htmlspecialchars($student['department']) ?></li>
-    </ul>
-
-  <form method="POST" action="./app/controller/students/delete-student.php">
-    <input type="hidden" name="studentID" value="<?php echo htmlspecialchars($studentID); ?>" />
-    <button type="submit" class="confirm-btn">Yes, Delete</button>
-    <a href="index.php" class="cancel-btn">Cancel</a>
-  </form>
+      <form method="POST" action="./app/controller/students/delete-student.php">
+        <input type="hidden" name="studentID" value="<?php echo htmlspecialchars($studentID); ?>" />
+        <div id="action-buttons">
+          <a href="index.php" class="btn cancel-btn secondary-btn">Cancel</a>
+          <button type="submit" class="confirm-btn primary-btn">Confirm</button>
+        </div>
+      </form>
+    </main>
   </div>
 </body>
 </html>
