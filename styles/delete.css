@@ -1,1 +1,51 @@
 @import url("./styles.css");
+
+.delete-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--card-foreground);
+  }
+
+  .delete-container h2 {
+    margin-bottom: 15px;
+  }
+  
+  .delete-container p {
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  
+  .delete-container ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+  }
+  
+  .delete-container ul li {
+    margin-bottom: 10px;
+  }
+  
+  .delete-container .confirm-btn,
+  .delete-container .cancel-btn {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .delete-container .confirm-btn {
+    background: #d9534f;
+    color: #fff;
+  }
+  
+  .delete-container .cancel-btn {
+    background: #f0f0f0;
+    color: #333;
+  }
