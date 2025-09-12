@@ -4,13 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Admin Dashboard</title>
-  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/index.css?v=2" />
   <link rel="icon" type="image/svg" href="./public/icons/favicon.svg" />
   <script src="/admin-dashboard/js/script.js" defer></script>
 </head>
-
+<style>
+body { overflow-y: scroll !important; }
+html, body { height: auto !important; }
+</style>
 <body>
   <?php include_once "./components/header.php" ?>
+        <?php
+      session_start();
+      if (isset($_SESSION['SUCCESS'])) {
+        echo '<div class="flash-success">'.htmlspecialchars($_SESSION['SUCCESS']).'</div>';
+        unset($_SESSION['SUCCESS']);
+      }
+      if (isset($_SESSION['error'])) {
+        echo '<div class="flash-error">'.htmlspecialchars($_SESSION['error']).'</div>';
+        unset($_SESSION['error']);
+      }
+      ?>
 
   <?php
   require_once "./app/controller/students/students.php";
@@ -26,7 +40,7 @@
     </div>
 
 
-  <?php if(!(mysqli_num_rows($students) > 0)): ?>
+  <?php if(mysqli_num_rows($students) > 0): ?>
       <div id="search-records">
         <div id="search">
           <img src="public/icons/search.svg" alt="search"/>
