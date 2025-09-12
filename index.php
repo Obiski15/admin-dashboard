@@ -67,7 +67,7 @@ html, body { height: auto !important; }
               <td><?php echo htmlspecialchars($row['name']); ?></td>
               <td><?php echo htmlspecialchars($row['age']); ?></td>
               <td><?php echo htmlspecialchars($row['department']); ?></td>
-              <td><?php echo htmlspecialchars(string: $row['studentID']); ?></td>
+              <td><?php echo htmlspecialchars($row['studentID']); ?></td>
               <td>
                 <a href="edit.php?studentID=<?php echo urlencode($row['studentID']); ?>">edit</a> |
                 <a href="delete.php?studentID=<?php echo urlencode($row['studentID']); ?>">delete</a>
