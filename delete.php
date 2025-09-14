@@ -1,26 +1,5 @@
 <?php
-
-require_once "./app/config/db.php";
-
-if (!isset($_GET['studentID'])) {
-  echo "No student ID provided.";
-  exit();
-}
-
-$studentID = $_GET['studentID'];
-$stmt = $con->prepare("SELECT * FROM students WHERE studentID = ?");
-$stmt->bind_param("s", $studentID);
-$stmt->execute();
-$result = $stmt->get_result();
-$student = $result->fetch_assoc();
-
-if(!$student) {
-  echo "Student not found";
-  exit();
-}
-
-$stmt->close();
-
+require_once "./app/controller/students/student.php";
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +16,13 @@ $stmt->close();
   <?php include_once "./components/header.php" ?>
 
   <div class="delete-container">
+    
     <main>
       <h2>Confirm Deletion</h2>
-      <p>Are you sure you want to delete the record for <strong><?= htmlspecialchars($student['name']) ?></strong>?</p>
+      <p>Are you sure you want to delete the record for <strong><?php echo $student['name']; ?></strong>?</p>
 
       <form method="POST" action="./app/controller/students/delete-student.php">
-        <input type="hidden" name="studentID" value="<?php echo htmlspecialchars($studentID); ?>" />
+        <input name="studentID" value="<?php echo htmlspecialchars($studentID); ?>" hidden />
         <div id="action-buttons">
           <a href="index.php" class="btn cancel-btn secondary-btn">Cancel</a>
           <button type="submit" class="confirm-btn primary-btn">Confirm</button>

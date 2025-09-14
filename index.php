@@ -12,22 +12,9 @@
   <?php include_once "./components/header.php" ?>
 
   <?php
-    session_start();
-    if (isset($_SESSION['SUCCESS'])) {
-      echo '<div class="flash-success">' . htmlspecialchars($_SESSION['SUCCESS']) . '</div>';
-      unset($_SESSION['SUCCESS']);
-    }
-    if (isset($_SESSION['error'])) {
-      echo '<div class="flash-error">' . htmlspecialchars($_SESSION['error']) . '</div>';
-      unset($_SESSION['error']);
-    }
-  ?>
-
-  <?php
     require_once "./app/controller/students/students.php";
   ?>
-
-  <!-- desktop records -->
+  
   <div id="records">
     <div id="records-heading">
       <h2>Student Records</h2>
@@ -98,16 +85,15 @@
         <?php endwhile; ?>
       </div>
 
-      <div id="add-student">
-        <a href="add.php" id="add-student" class="btn primary-btn">
-          <img src="/admin-dashboard/public/icons/plus.svg" alt="add" />
-        </a>
-      </div>
     <?php else: ?>
-      <div>
-        No student records found
-      </div>
+      <?php include_once "./components/no-records.php" ?>
     <?php endif; ?>
+
+    <div id="add-student">
+      <a href="add.php" id="add-student" class="btn primary-btn">
+        <img src="/admin-dashboard/public/icons/plus.svg" alt="add" />
+      </a>
+    </div>
   </div>
 </body>
 </html>

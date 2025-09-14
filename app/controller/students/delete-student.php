@@ -1,24 +1,25 @@
 <?php
 
 require_once "../../config/db.php"; 
+session_start();
 
 $studentID = $_POST['studentID']; 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($studentID)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($studentID) ) {
 
     $stmt = $con->prepare("DELETE FROM students WHERE studentID = ?");
     $stmt->bind_param("s", $studentID);
 
     if ($stmt->execute()) {
-        echo "Student with ID $studentID has been deleted.";
-        header("Location: /admin-dashboard/index.php");
+        $_SESSION["success"] = "Student with ID $studentID has been deleted.";
+        $stmt->close();
     } else {
-        echo "Failed to delete student: " . $con->error;
+        $_SESSION["success"] = "Failed to delete student: $studentID";
     }
+    header("Location: /admin-dashboard/index.php");
 
-    $stmt->close();
 } else {
-    echo "Invalid request.";
+    $_SESSION["error"] = "Invalid request";
 }
 
 $con->close();

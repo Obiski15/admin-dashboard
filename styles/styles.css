@@ -15,6 +15,10 @@
   --input: #e5f5f0;
 
   --ring: #009963;
+
+  --success: #009963;
+
+  --error: #d93025;
 }
 
 :root,
@@ -35,6 +39,10 @@
   --input: #17362b;
 
   --ring: #009963;
+
+  --success: #00c27a;
+
+  --error: #ff5c57;
 }
 
 @font-face {
@@ -181,6 +189,20 @@ button,
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
+}
+
+.flash-message {
+  font-weight: bold;
+  text-transform: capitalize;
+  padding: 1rem 1.6rem;
+}
+
+.flash-message-success {
+  color: var(--primary);
+}
+
+.flash-message-error {
+  color: var(--error);
 }
 
 /* media screens for responsiveness */

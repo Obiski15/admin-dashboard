@@ -1,39 +1,44 @@
 <?php
 
-require_once __DIR__ . '/../../config/db.php';
+require_once "../../config/db.php";
+require_once "../../utils/helpers.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_student'])) {
+session_start();
 
-    $id = isset($_POST['student_id']) ? intval($_POST['student_id']) : 0;
-    $name = isset($_POST['name']) ? trim($_POST['name']) : '';
-    $age = isset($_POST['age']) ? intval($_POST['age']) : 0;
-    $department = isset($_POST['department']) ? trim($_POST['department']) : '';
+$_SESSION["test"] = "test session";
 
-    if ($id <= 0 || empty($name) || $age <= 0 || empty($department)) {
-        $_SESSION['error'] = "Invalid data provided. Please fill out all fields.";
-        header("Location: /admin-dashboard/");
-        exit();
-    }
+$studentID = clean_input($_POST["studentID"]);
 
-    $stmt = $conn->prepare("UPDATE students SET name = ?, age = ?, department = ? WHERE id = ?");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($studentID)) {
     
-    $stmt->bind_param("sisi", $name, $age, $department, $id);
+    
+    $nameErr = $ageError = $departmentErr = "";
 
-    if ($stmt->execute()) {
-        $_SESSION['SUCCESS'] = "Student record updated successfully.";
-    } else {
-        $_SESSION['error'] = "Failed to update student record: " . $stmt->error;
+    $department = clean_input($_POST["department"]);
+    $age = intval(clean_input($_POST["age"]));
+    $name = clean_input($_POST["name"]);
+    
+    if (!$name || !$age || !$department) {
+        $_SESSION['error'] = 'Please fill all required fields';
+        header("Location: /admin-dashboard/edit.php");
+        exit;
     }
 
-    $stmt->close();
-    $conn->close();
+    $stmt = $con->prepare("UPDATE students SET department = ?, age = ?, name = ? WHERE studentID = ? ");
+    $stmt->bind_param("siss", $department, $age, $name, $studentID);
+    
+    if($stmt->execute()){
+        $_SESSION["success"] = "Student record updated successfully!";
+        $stmt->close();
+    }else{
+        $_SESSION["error"] = "Unable to update record. Please try again!";
+    }
+    header("Location: /admin-dashboard/edit.php?studentID=$studentID");
+    
+} else  {
+    $_SESSION["error"] = "Invalid request";
     header("Location: /admin-dashboard/");
-    exit();
-
-} else {
-    // close and redirect back to main dashboard
-    $_SESSION['error'] = "Invalid request.";
-    header("Location: /admin-dashboard/");
-    exit();
 }
+
+$con->close();
 ?>

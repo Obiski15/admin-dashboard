@@ -1,3 +1,6 @@
+<?php
+require_once "./app/utils/constants.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +39,11 @@
 
           <select id="department" name="department" required>
             <option value="">-- Select Department --</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Cyber Security Science">Cyber Security Science</option>
-            <option value="Software Engineering">Software Engineering</option>
-            <option value="Information Science and Media Studies">Information Science and Media Studies</option>
-            <option value="Information Technology">Information Technology</option>
-            <option value="Data Science">Data Science</option>
+            <?php
+              foreach (DEPARTMENTS as $value){
+                echo "<option value='$value'" . ($value === $student['department'] ? " selected" : "") . ">$value</option>";
+              };
+            ?>
           </select>
         </div>
 
