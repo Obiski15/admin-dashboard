@@ -19,7 +19,7 @@ $student = $result->fetch_assoc();
 
 
 if(!$student) {
-  echo "Student record not found";
+  $_SESSION["error"] = "Student record not found";
   header("Location: /admin-dashboard/");
 }
 

@@ -5,15 +5,11 @@ require_once "../../utils/helpers.php";
 
 session_start();
 
-$_SESSION["test"] = "test session";
 
 $studentID = clean_input($_POST["studentID"]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($studentID)) {
     
-    
-    $nameErr = $ageError = $departmentErr = "";
-
     $department = clean_input($_POST["department"]);
     $age = intval(clean_input($_POST["age"]));
     $name = clean_input($_POST["name"]);
